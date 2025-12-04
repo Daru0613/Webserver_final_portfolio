@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import Navbar from './components/Navbar'
+import { Instagram, Github, BookOpen } from 'lucide-react'
 
 export default function Page() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -72,29 +73,84 @@ export default function Page() {
   }, [])
 
   return (
-    <div className="relative w-full h-screen bg-gray-200">
+    <div className="relative w-full h-screen bg-gray-200 overflow-hidden">
       <Navbar />
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
-      <div className="relative z-10 flex items-center justify-center h-full">
-        <h1 className="text-4xl font-bold text-gray-800">Portfolio</h1>
-      </div>
 
-      {/* 오른쪽 회전하는 프로필 */}
-      <div className="absolute right-20 top-1/2 -translate-y-1/2 z-10">
-        <div className="relative w-80 h-80">
-          {/* 회전하는 테두리 1 */}
-          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-gray-600 animate-spin-slow"></div>
+      <div className="absolute inset-0 flex items-center justify-center gap-65 px-[8%] z-10">
+        {/* 왼쪽 영역 */}
+        <div className="flex-shrink-0 w-[45%] max-w-[600px]">
+          {/* 소개 문구 (배경 없이) */}
+          <div className="mb-6">
+            <h1 className="text-[clamp(2rem,5vw,4.5rem)] font-bold text-gray-800 mb-4 leading-tight">
+              Hello, I'm <br />Kim Seojin
+            </h1>
+            <h2 className="text-[clamp(1.5rem,3.5vw,3rem)] font-semibold text-gray-700 mb-6">92212764</h2>
+            <p className="text-[clamp(1.2rem,2.5vw,1.875rem)] text-gray-600 mb-3">정보보호학전공</p>
+          </div>
 
-          {/* 회전하는 테두리 2 (반대 방향) */}
-          <div className="absolute inset-1 rounded-full border-4 border-transparent border-b-gray-500 animate-spin-slow-reverse"></div>
+          {/* 직사각형 박스 (버튼들) */}
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl shadow-2xl p-6 md:p-8 w-full">
+            <div className="flex justify-around items-center gap-4 md:gap-6">
+              {/* Instagram 버튼 */}
+              <a
+                href="https://www.instagram.com/_seojin_613/?next=%2F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-2 md:gap-3 hover:scale-110 transition-transform"
+              >
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center shadow-lg">
+                  <Instagram className="text-white" size={window.innerWidth < 768 ? 32 : 48} />
+                </div>
+                <span className="text-sm md:text-base text-gray-700 font-medium">Instagram</span>
+              </a>
 
-          {/* 프로필 이미지 */}
-          <div className="absolute inset-2 rounded-full overflow-hidden bg-white">
-            <img
-              src="/kimseojin1.png"
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
+              {/* GitHub 버튼 */}
+              <a
+                href="https://github.com/Daru0613"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-2 md:gap-3 hover:scale-110 transition-transform"
+              >
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gray-800 flex items-center justify-center shadow-lg">
+                  <Github className="text-white" size={window.innerWidth < 768 ? 32 : 48} />
+                </div>
+                <span className="text-sm md:text-base text-gray-700 font-medium">GitHub</span>
+              </a>
+
+              {/* Blog 버튼 */}
+              <a
+                href="https://blog.naver.com/nafi6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-2 md:gap-3 hover:scale-110 transition-transform"
+              >
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-blue-500 flex items-center justify-center shadow-lg">
+                  <BookOpen className="text-white" size={window.innerWidth < 768 ? 32 : 48} />
+                </div>
+                <span className="text-sm md:text-base text-gray-700 font-medium">Blog</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* 오른쪽 회전하는 프로필 */}
+        <div className="flex-shrink-0 w-[55%] max-w-[480px] aspect-square">
+          <div className="relative w-full h-full">
+            {/* 회전하는 테두리 1 */}
+            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-gray-600 animate-spin-slow"></div>
+
+            {/* 회전하는 테두리 2 (반대 방향) */}
+            <div className="absolute inset-1 rounded-full border-4 border-transparent border-b-gray-500 animate-spin-slow-reverse"></div>
+
+            {/* 프로필 이미지 */}
+            <div className="absolute inset-2 rounded-full overflow-hidden bg-white">
+              <img
+                src="/kimseojin1.png"
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
