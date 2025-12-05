@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import SnowBackground from '../components/SnowBackground'
 
 interface GuestbookEntry {
-  id: number
+  _id?: string
   name: string
   content: string
   dateTime: string
@@ -15,10 +15,31 @@ export default function Page() {
   const [entries, setEntries] = useState<GuestbookEntry[]>([])
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // 방명록 목록 불러오기
+  const fetchEntries = async () => {
+    try {
+      const response = await fetch('/api/guestbook')
+      const result = await response.json()
+      if (result.success) {
+        setEntries(result.data)
+      }
+    } catch (error) {
+      console.error('Failed to fetch entries:', error)
+    }
+  }
+
+  // 컴포넌트 마운트 시 방명록 불러오기
+  useEffect(() => {
+    fetchEntries()
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (name.trim() && content.trim()) {
+      setLoading(true)
+
       const now = new Date()
       const dateTimeString = `${now.toLocaleDateString(
         'ko-KR'
@@ -27,15 +48,35 @@ export default function Page() {
         minute: '2-digit',
       })}`
 
-      const newEntry: GuestbookEntry = {
-        id: Date.now(),
-        name: name.trim(),
-        content: content.trim(),
-        dateTime: dateTimeString,
+      try {
+        const response = await fetch('/api/guestbook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name.trim(),
+            content: content.trim(),
+            dateTime: dateTimeString,
+          }),
+        })
+
+        const result = await response.json()
+
+        if (result.success) {
+          setName('')
+          setContent('')
+          // 목록 새로고침
+          await fetchEntries()
+        } else {
+          alert('방명록 작성에 실패했습니다.')
+        }
+      } catch (error) {
+        console.error('Failed to submit entry:', error)
+        alert('방명록 작성에 실패했습니다.')
+      } finally {
+        setLoading(false)
       }
-      setEntries([newEntry, ...entries])
-      setName('')
-      setContent('')
     }
   }
 
@@ -96,7 +137,7 @@ export default function Page() {
               ) : (
                 entries.map((entry) => (
                   <div
-                    key={entry.id}
+                    key={entry._id}
                     className="flex items-start gap-4 py-3 border-b border-gray-200 last:border-0"
                   >
                     <div className="min-w-[120px] font-bold text-gray-800 text-lg">
@@ -160,9 +201,10 @@ export default function Page() {
             </div>
             <button
               type="submit"
-              className="w-full bg-gray-800 text-white font-semibold py-3 rounded-lg hover:bg-gray-700 transition-colors text-lg"
+              disabled={loading}
+              className="w-full bg-gray-800 text-white font-semibold py-3 rounded-lg hover:bg-gray-700 transition-colors text-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-              작성하기
+              {loading ? '작성 중...' : '작성하기'}
             </button>
           </form>
         </div>
