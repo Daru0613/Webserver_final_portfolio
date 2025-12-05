@@ -85,7 +85,7 @@ export default function Page() {
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="w-44 h-44 rounded-full bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 text-white font-bold text-3xl shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center border-4 border-white/50"
+              className="w-44 h-44 rounded-full bg-linear-to-br from-gray-700 via-gray-800 to-gray-900 text-white font-bold text-3xl shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center border-4 border-white/50"
             >
               김서진
             </button>

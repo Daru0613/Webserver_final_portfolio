@@ -118,7 +118,7 @@ export default function Page() {
               {/* 왼쪽 화살표 */}
               <button
                 onClick={prevSlide}
-                className="w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 flex-shrink-0"
+                className="w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 shrink-0"
               >
                 <ChevronLeft size={28} className="text-gray-800" />
               </button>
@@ -170,7 +170,7 @@ export default function Page() {
               {/* 오른쪽 화살표 */}
               <button
                 onClick={nextSlide}
-                className="w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 flex-shrink-0"
+                className="w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 shrink-0"
               >
                 <ChevronRight size={28} className="text-gray-800" />
               </button>

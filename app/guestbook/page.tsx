@@ -123,7 +123,7 @@ export default function Page() {
           </svg>
 
           {/* 큰 액자 */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-2xl border-[12px] border-gray-700 w-[900px] min-h-[500px] p-10 mt-20">
+          <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-2xl border-12 border-gray-700 w-[900px] min-h-[500px] p-10 mt-20">
             <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center border-b-4 border-gray-300 pb-4">
               방명록
             </h2>

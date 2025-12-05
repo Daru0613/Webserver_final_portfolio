@@ -6,8 +6,17 @@ import { Instagram, Github, BookOpen } from 'lucide-react'
 
 export default function Page() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [iconSize, setIconSize] = React.useState(48)
 
   useEffect(() => {
+    // 아이콘 크기 설정
+    const updateIconSize = () => {
+      setIconSize(window.innerWidth < 768 ? 32 : 48)
+    }
+    
+    updateIconSize()
+    window.addEventListener('resize', updateIconSize)
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -69,6 +78,7 @@ export default function Page() {
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', updateIconSize)
     }
   }, [])
 
@@ -79,7 +89,7 @@ export default function Page() {
 
       <div className="absolute inset-0 flex items-center justify-center gap-65 px-[8%] z-10">
         {/* 왼쪽 영역 */}
-        <div className="flex-shrink-0 w-[40%] max-w-[600px]">
+        <div className="shrink-0 w-[40%] max-w-[600px]">
           {/* 소개 문구 (배경 없이) */}
           <div className="mb-6">
             <h1 className="text-[clamp(2rem,5vw,4.5rem)] font-bold text-gray-800 mb-4 leading-tight">
@@ -104,10 +114,10 @@ export default function Page() {
                 rel="noopener noreferrer"
                 className="flex flex-col items-center gap-2 md:gap-3 hover:scale-110 transition-transform"
               >
-                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center shadow-lg">
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-linear-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center shadow-lg">
                   <Instagram
                     className="text-white"
-                    size={window.innerWidth < 768 ? 32 : 48}
+                    size={iconSize}
                   />
                 </div>
                 <span className="text-sm md:text-base text-gray-700 font-medium">
@@ -125,7 +135,7 @@ export default function Page() {
                 <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gray-800 flex items-center justify-center shadow-lg">
                   <Github
                     className="text-white"
-                    size={window.innerWidth < 768 ? 32 : 48}
+                    size={iconSize}
                   />
                 </div>
                 <span className="text-sm md:text-base text-gray-700 font-medium">
@@ -143,7 +153,7 @@ export default function Page() {
                 <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-blue-500 flex items-center justify-center shadow-lg">
                   <BookOpen
                     className="text-white"
-                    size={window.innerWidth < 768 ? 32 : 48}
+                    size={iconSize}
                   />
                 </div>
                 <span className="text-sm md:text-base text-gray-700 font-medium">
@@ -155,7 +165,7 @@ export default function Page() {
         </div>
 
         {/* 오른쪽 회전하는 프로필 */}
-        <div className="flex-shrink-0 w-[40%] max-w-[480px] aspect-square">
+        <div className="shrink-0 w-[40%] max-w-[480px] aspect-square">
           <div className="relative w-full h-full">
             {/* 회전하는 테두리 1 */}
             <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-gray-600 animate-spin-slow"></div>
