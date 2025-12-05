@@ -3,7 +3,16 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import SnowBackground from '../components/SnowBackground'
-import { Github, Star, GitFork, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react'
+import {
+  Github,
+  Star,
+  GitFork,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react'
 
 interface Repo {
   id: number
@@ -37,28 +46,31 @@ export default function Page() {
   const projectCards: ProjectCard[] = [
     {
       id: 1,
-      title: '프로젝트 1',
-      description: '첫 번째 프로젝트 설명',
-      image: '/project1.jpg' // public 폴더에 이미지를 넣으세요
+      title: 'Goaiyang',
+      description:
+        '해커톤 프로젝트: 감정 분석 AI 기반 고양시 여행지 추천 서비스',
+      image: '/Goaiyang.png',
     },
     {
       id: 2,
-      title: '프로젝트 2',
-      description: '두 번째 프로젝트 설명',
-      image: '/project2.jpg'
+      title: 'autOTP',
+      description: '중부대학교 전용 자동 로그인 프로그램',
+      image: '/autotpicon.png',
     },
     {
       id: 3,
-      title: '프로젝트 3',
-      description: '세 번째 프로젝트 설명',
-      image: '/project3.jpg'
-    }
+      title: 'Security News',
+      description: '웹서버보안프로그래밍 팀 프로젝트',
+      image: '/security_news.png',
+    },
   ]
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=100`)
+        const response = await fetch(
+          `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=100`
+        )
         const data = await response.json()
         setRepos(data)
       } catch (error) {
@@ -76,11 +88,14 @@ export default function Page() {
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + projectCards.length) % projectCards.length)
+    setCurrentIndex(
+      (prev) => (prev - 1 + projectCards.length) % projectCards.length
+    )
   }
 
   const getCardPosition = (index: number) => {
-    const diff = (index - currentIndex + projectCards.length) % projectCards.length
+    const diff =
+      (index - currentIndex + projectCards.length) % projectCards.length
     if (diff === 0) return 'center'
     if (diff === 1 || diff === -2) return 'right'
     return 'left'
@@ -90,10 +105,12 @@ export default function Page() {
     <div className="relative w-full min-h-screen bg-gray-200">
       <Navbar />
       <SnowBackground />
-      
+
       <div className="relative z-10 pt-24 pb-20 px-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-6xl font-bold text-gray-800 text-center mb-16">My Projects</h1>
+          <h1 className="text-6xl font-bold text-gray-800 text-center mb-16">
+            My Projects
+          </h1>
 
           {/* 프로젝트 카드 캐러셀 */}
           <div className="relative mb-20">
@@ -109,10 +126,12 @@ export default function Page() {
               {/* 카드들 - 3개 나란히 */}
               <div className="flex items-center justify-center gap-12 w-full max-w-6xl">
                 {[0, 1, 2].map((offset) => {
-                  const index = (currentIndex + offset - 1 + projectCards.length) % projectCards.length
+                  const index =
+                    (currentIndex + offset - 1 + projectCards.length) %
+                    projectCards.length
                   const card = projectCards[index]
                   const isCenter = offset === 1
-                  
+
                   return (
                     <div
                       key={`${card.id}-${offset}`}
@@ -129,13 +148,18 @@ export default function Page() {
                             alt={card.title}
                             className="w-full h-full object-cover transition-transform duration-300"
                             onError={(e) => {
-                              e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="300"%3E%3Crect fill="%23ddd" width="500" height="300"/%3E%3Ctext fill="%23999" font-family="sans-serif" font-size="30" dy="10.5" font-weight="bold" x="50%25" y="50%25" text-anchor="middle"%3E이미지 없음%3C/text%3E%3C/svg%3E'
+                              e.currentTarget.src =
+                                'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="300"%3E%3Crect fill="%23ddd" width="500" height="300"/%3E%3Ctext fill="%23999" font-family="sans-serif" font-size="30" dy="10.5" font-weight="bold" x="50%25" y="50%25" text-anchor="middle"%3E이미지 없음%3C/text%3E%3C/svg%3E'
                             }}
                           />
                         </div>
                         <div className="p-6">
-                          <h3 className="text-2xl font-bold text-gray-800 mb-2">{card.title}</h3>
-                          <p className="text-gray-600 text-sm">{card.description}</p>
+                          <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                            {card.title}
+                          </h3>
+                          <p className="text-gray-600 text-sm">
+                            {card.description}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -159,7 +183,9 @@ export default function Page() {
                   key={index}
                   onClick={() => setCurrentIndex(index)}
                   className={`h-3 rounded-full transition-all ${
-                    index === currentIndex ? 'bg-gray-800 w-8' : 'bg-gray-400 w-3'
+                    index === currentIndex
+                      ? 'bg-gray-800 w-8'
+                      : 'bg-gray-400 w-3'
                   }`}
                 />
               ))}
@@ -169,7 +195,9 @@ export default function Page() {
           {/* GitHub 레포지토리 섹션 */}
           <div className="mt-20">
             <div className="flex items-center justify-center mb-8">
-              <h2 className="text-4xl font-bold text-gray-800 text-center">GitHub 레포지토리 목록</h2>
+              <h2 className="text-4xl font-bold text-gray-800 text-center">
+                GitHub 레포지토리 목록
+              </h2>
             </div>
 
             {/* 토글 버튼 */}
@@ -178,8 +206,14 @@ export default function Page() {
                 onClick={() => setShowRepos(!showRepos)}
                 className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-all shadow-lg hover:shadow-xl"
               >
-                <span>{showRepos ? '레포지토리 숨기기' : '레포지토리 보기'}</span>
-                {showRepos ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                <span>
+                  {showRepos ? '레포지토리 숨기기' : '레포지토리 보기'}
+                </span>
+                {showRepos ? (
+                  <ChevronUp size={20} />
+                ) : (
+                  <ChevronDown size={20} />
+                )}
               </button>
             </div>
 
@@ -187,7 +221,9 @@ export default function Page() {
             {showRepos && (
               <div className="transition-all duration-500">
                 {loading ? (
-                  <div className="text-center text-gray-600 text-xl">로딩 중...</div>
+                  <div className="text-center text-gray-600 text-xl">
+                    로딩 중...
+                  </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {repos.map((repo) => (
@@ -232,7 +268,10 @@ export default function Page() {
                         </div>
 
                         <div className="text-xs text-gray-400 mt-4">
-                          Updated: {new Date(repo.updated_at).toLocaleDateString('ko-KR')}
+                          Updated:{' '}
+                          {new Date(repo.updated_at).toLocaleDateString(
+                            'ko-KR'
+                          )}
                         </div>
                       </div>
                     ))}

@@ -42,10 +42,10 @@ export default function Navbar() {
             Team
           </Link>
           <Link
-            href="/board"
+            href="/guestbook"
             className="text-gray-800 hover:text-gray-600 transition-colors font-medium"
           >
-            Board
+            Guestbook
           </Link>
         </div>
       </div>
