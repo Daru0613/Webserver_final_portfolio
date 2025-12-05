@@ -13,7 +13,7 @@ export default function Page() {
     const updateIconSize = () => {
       setIconSize(window.innerWidth < 768 ? 32 : 48)
     }
-    
+
     updateIconSize()
     window.addEventListener('resize', updateIconSize)
 
@@ -115,10 +115,7 @@ export default function Page() {
                 className="flex flex-col items-center gap-2 md:gap-3 hover:scale-110 transition-transform"
               >
                 <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-linear-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center shadow-lg">
-                  <Instagram
-                    className="text-white"
-                    size={iconSize}
-                  />
+                  <Instagram className="text-white" size={iconSize} />
                 </div>
                 <span className="text-sm md:text-base text-gray-700 font-medium">
                   Instagram
@@ -133,10 +130,7 @@ export default function Page() {
                 className="flex flex-col items-center gap-2 md:gap-3 hover:scale-110 transition-transform"
               >
                 <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-gray-800 flex items-center justify-center shadow-lg">
-                  <Github
-                    className="text-white"
-                    size={iconSize}
-                  />
+                  <Github className="text-white" size={iconSize} />
                 </div>
                 <span className="text-sm md:text-base text-gray-700 font-medium">
                   GitHub
@@ -151,10 +145,7 @@ export default function Page() {
                 className="flex flex-col items-center gap-2 md:gap-3 hover:scale-110 transition-transform"
               >
                 <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-blue-500 flex items-center justify-center shadow-lg">
-                  <BookOpen
-                    className="text-white"
-                    size={iconSize}
-                  />
+                  <BookOpen className="text-white" size={iconSize} />
                 </div>
                 <span className="text-sm md:text-base text-gray-700 font-medium">
                   Blog

@@ -31,6 +31,8 @@ interface ProjectCard {
   title: string
   description: string
   image: string
+  repoUrl?: string
+  siteUrl?: string
 }
 
 export default function Page() {
@@ -50,18 +52,38 @@ export default function Page() {
       description:
         '해커톤 프로젝트: 감정 분석 AI 기반 고양시 여행지 추천 서비스',
       image: '/Goaiyang.png',
+      repoUrl: 'https://github.com/Daru0613/likelionhackathon-main',
     },
     {
       id: 2,
       title: 'autOTP',
       description: '중부대학교 전용 자동 로그인 프로그램',
       image: '/autotpicon.png',
+      repoUrl: 'https://github.com/Daru0613/autotp',
     },
     {
       id: 3,
       title: 'Security News',
       description: '웹서버보안프로그래밍 팀 프로젝트',
       image: '/security_news.png',
+      repoUrl: 'https://github.com/Daru0613/2025_2_security_news-main',
+      siteUrl: 'https://your-security-news-site.com',
+    },
+    {
+      id: 4,
+      title: 'CRUD Project',
+      description: 'CRUD 기능 구현 실습 프로젝트',
+      image: '/crud.png',
+      repoUrl: 'https://github.com/Daru0613/crud',
+      siteUrl: 'https://crud-theta-flame.vercel.app/',
+    },
+    {
+      id: 5,
+      title: 'shopping mall Project',
+      description: '쇼핑몰 구현 실습 프로젝트',
+      image: '/daiso.png',
+      repoUrl: 'https://github.com/Daru0613/daiso_shopping',
+      siteUrl: 'https://daiso-shopping-flame.vercel.app/',
     },
   ]
 
@@ -141,7 +163,7 @@ export default function Page() {
                           : 'w-[400px] h-[400px] scale-95 opacity-70'
                       }`}
                     >
-                      <div className="w-full h-full bg-white rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 hover:scale-105">
+                      <div className="relative w-full h-full bg-white rounded-3xl shadow-2xl overflow-hidden group hover:shadow-3xl transition-all duration-300 hover:scale-105">
                         <div className="relative w-full h-3/4 bg-gray-300">
                           <img
                             src={card.image}
@@ -152,6 +174,34 @@ export default function Page() {
                                 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="300"%3E%3Crect fill="%23ddd" width="500" height="300"/%3E%3Ctext fill="%23999" font-family="sans-serif" font-size="30" dy="10.5" font-weight="bold" x="50%25" y="50%25" text-anchor="middle"%3E이미지 없음%3C/text%3E%3C/svg%3E'
                             }}
                           />
+
+                          {/* 호버 시 나타나는 버튼들 */}
+                          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                            {card.repoUrl && (
+                              <a
+                                href={card.repoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors shadow-lg"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Github size={20} />
+                                Repository
+                              </a>
+                            )}
+                            {card.siteUrl && (
+                              <a
+                                href={card.siteUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <ExternalLink size={20} />
+                                Visit Site
+                              </a>
+                            )}
+                          </div>
                         </div>
                         <div className="p-6">
                           <h3 className="text-2xl font-bold text-gray-800 mb-2">
