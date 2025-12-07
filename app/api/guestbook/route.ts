@@ -37,7 +37,7 @@ export async function POST(request: Request) {
       dateTime,
     })
 
-    // ✅ 여기서 우분투 로그 서버로 전송
+    // 여기서 우분투 로그 서버로 전송
     try {
       await fetch('http://192.168.234.130:4000/log', {
         method: 'POST',
@@ -51,7 +51,6 @@ export async function POST(request: Request) {
         }),
       })
     } catch (e) {
-      // 로그 서버 죽어 있어도 메인 기능은 안 터지게
       console.error('Log server error:', e)
     }
 

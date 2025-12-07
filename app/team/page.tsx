@@ -11,7 +11,7 @@ export default function Page() {
       role: '92212764',
       image: '/kimseojin1.png',
       bgColor: 'bg-gray-100',
-      portfolioUrl: 'https://your-portfolio-url.com',
+      portfolioUrl: 'https://webserver-final-portfolio.vercel.app/',
       githubUrl: 'https://github.com/Daru0613',
     },
     {
@@ -19,7 +19,7 @@ export default function Page() {
       role: '92212867',
       image: '/parkhanbin.png',
       bgColor: 'bg-gray-200',
-      portfolioUrl: '#',
+      portfolioUrl: 'https://2025-2-mypage.vercel.app/',
       githubUrl: 'https://github.com/han122400',
     },
     {
@@ -27,7 +27,7 @@ export default function Page() {
       role: '92213031',
       image: '/leejihun.png',
       bgColor: 'bg-gray-300',
-      portfolioUrl: '#',
+      portfolioUrl: 'https://web-final-five-sigma.vercel.app/',
       githubUrl: 'https://github.com/LEEJIHUN6844',
     },
     {
@@ -35,7 +35,7 @@ export default function Page() {
       role: '92410847',
       image: '/younjuhyeok.png',
       bgColor: 'bg-gray-250',
-      portfolioUrl: '#',
+      portfolioUrl: 'https://web-server-final-theta.vercel.app/',
       githubUrl: 'https://github.com/Juhyeok0603',
     },
   ]
@@ -108,15 +108,11 @@ export default function Page() {
             </h2>
 
             {/* 프로젝트 썸네일 */}
-            <div className="mb-6 rounded-xl overflow-hidden shadow-lg">
+            <div className="mb-6 rounded-xl overflow-hidden shadow-lg bg-gray-100">
               <img
-                src="/project-thumbnail.png"
-                alt="Project Thumbnail"
-                className="w-full h-80 object-cover"
-                onError={(e) => {
-                  e.currentTarget.src =
-                    'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="400"%3E%3Crect width="800" height="400" fill="%23e5e7eb"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23666" font-size="24"%3EProject Thumbnail%3C/text%3E%3C/svg%3E'
-                }}
+                src="/security_news.png"
+                alt="Security News Project"
+                className="w-full h-80 object-contain"
               />
             </div>
 
@@ -130,7 +126,7 @@ export default function Page() {
             {/* 버튼 영역 */}
             <div className="flex gap-4 justify-center">
               <a
-                href="https://github.com/your-repo"
+                href="https://github.com/Daru0613/2025_2_security_news-main"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors shadow-md hover:shadow-lg"
@@ -145,7 +141,7 @@ export default function Page() {
                 GitHub Repository
               </a>
               <a
-                href="https://your-project-site.com"
+                href="https://security-news-258137341860.asia-northeast1.run.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
